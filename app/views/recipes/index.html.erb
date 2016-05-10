@@ -1,0 +1,11 @@
+<h1>Index</h1>
+
+<%@recipes.each do |r| %>
+    <p><%=  link_to(r.title, recipe_path(r))%></p>
+   
+<%end %>
+<hr>
+<div>
+    <%= link_to("Add recipe", new_recipe_path) %>
+</div>
+

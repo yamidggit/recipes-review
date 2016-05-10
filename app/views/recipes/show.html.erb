@@ -1,0 +1,15 @@
+<h1>Recipe</h1>
+
+    <h2><%= @recipe.title %></h2>
+    <h3><%= @recipe.publisher %></h3>
+    <p><%= @recipe.description %></p>
+    
+    <div>
+        <p> <%=link_to("All Recipes",recipes_path)%></p>
+    </div>
+    <div>
+        <p> <%=link_to("delete Recipe", recipe_path(@recipe), method: :delete)%></p>
+    </div>
+    <div>    
+        <p> <%=link_to("edit Recipe",edit_recipe_path(@recipe))%></p>
+    </div>
