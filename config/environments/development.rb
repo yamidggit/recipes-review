@@ -1,4 +1,10 @@
 Rails.application.configure do
+  
+  config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload, host: 'project-2-yamidgc9.c9users.io', port: 8081
+  
+  Paperclip.options[:command_path] = "/usr/bin/"
+  # ...
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on

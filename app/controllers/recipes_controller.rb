@@ -1,16 +1,22 @@
 class RecipesController < ApplicationController
-    before_action :find_recipe, only: [:show, :edit,:destroy, :update] 
+    before_action :find_recipe, only: [:show, :edit,:destroy, :update,:add_category] 
+    before_action :authenticate_user!, only: [:new, :create, :edit, :destroy, :update]
     def index
         @recipes=Recipe.all
     end
     
     def new
-        @recipe= Recipe.new
+        @recipe= current_user.recipes.new
+        @categories=Category.all.map{|c| [c.name, c.id]}
     end
     
     def create
-        #puts "#{params.inspect}"
-        @recipe = Recipe.new(recipe_params)
+        
+        @recipe = current_user.recipes.new(recipe_params)
+       
+        add_category
+        
+        
         if @recipe.save
             redirect_to recipes_path
         else
@@ -26,9 +32,11 @@ class RecipesController < ApplicationController
         redirect_to recipes_path
     end
     def edit
+        @categories=Category.all.map{|c| [c.name, c.id]}
     end
     
     def update 
+        add_category
         if @recipe.update_attributes(recipe_params)
             redirect_to @recipe
         else
@@ -36,15 +44,29 @@ class RecipesController < ApplicationController
         end
     end
     
-     def find_recipe
+    def find_recipe
         @recipe = Recipe.find(params[:id])
         
     end
 
     # strong parameters
     def recipe_params
-        params.require(:recipe).permit(:title, :description, :publisher)
+        
+        params.require(:recipe).permit(:title, :description, :publisher, :recipe_img)
     end
+    def add_category
+@recipe.categories=[]
+        @category_ids= params[:recipe][:category_ids].delete_if{|i|i==""}
+        @category_ids.each do |c|
+            @category = Category.find(c) 
+            @recipe.categories << @category if (@recipe.categories.include?(@category)==false)
+        end
+        
+    end
+    def recipes_by_category
+        Category.all.each {|c| @category= c if params[:category_name]==c.name}
+    end
+    
 end
 
 

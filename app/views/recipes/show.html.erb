@@ -1,15 +1,42 @@
-<h1>Recipe</h1>
 
-    <h2><%= @recipe.title %></h2>
-    <h3><%= @recipe.publisher %></h3>
-    <p><%= @recipe.description %></p>
+    <div class="row center-block">
+        <div class="col-md-4">
+            <h3><%= @recipe.title %></h3>
+            <%=image_tag @recipe.recipe_img.url, width: 350, height: 400, class: "img-rounded ", alt: 'a recipe'%>
+            <div class="row center-block">
+                <div class="col-md-3">
+                    <p><%= link_to("Back", recipes_path)%></p>
+                </div>
+                <% if user_signed_in?%>
+                    <div class="col-md-4">
+                       <p><%=link_to("Edit Recipe",edit_recipe_path(@recipe))%></p>
+                    </div>
+                    <div class="col-md-5">
+                        <p><%=link_to("Delete Recipe", recipe_path(@recipe), method: :delete)%></p>
+                    </div>
+                <%end%>
+                </div>
+            </div>
+           
+        <div class="col-md-8 description">
+            <h3>Categories:</h3> 
+            <p><%= @recipe.categories.map(&:name).join(', ') %></p>
+            <hr>
+            <h3><%= @recipe.publisher %></h3>
+            <hr>
+            <p><%= @recipe.description %></p>
+            <%=link_to("Add comment", new_review_path(@recipe) )%>
+            
+            
+            
+        </div>
+        
+    </div>
+       
+
+      
+        
+        
+  
     
-    <div>
-        <p> <%=link_to("All Recipes",recipes_path)%></p>
-    </div>
-    <div>
-        <p> <%=link_to("delete Recipe", recipe_path(@recipe), method: :delete)%></p>
-    </div>
-    <div>    
-        <p> <%=link_to("edit Recipe",edit_recipe_path(@recipe))%></p>
-    </div>
+   

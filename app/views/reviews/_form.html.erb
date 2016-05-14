@@ -1,0 +1,8 @@
+<div class="row container">
+    <%= simple_form_for @review, html: { multipart: true } do |f| %>
+        <%= f.input :rating, placeholder: 'Enter rating' %>
+        <%= f.input :comment, placeholder: 'Comment' %>
+        <br>
+        <%= f.button :submit, class: "btn btn-primary" %>
+    <% end %>
+</div>

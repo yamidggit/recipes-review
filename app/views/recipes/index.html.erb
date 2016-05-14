@@ -1,11 +1,14 @@
-<h1>Index</h1>
+<% if user_signed_in?%>
+    <%@recipes=current_user.recipes%>
+<%end%>
 
-<%@recipes.each do |r| %>
-    <p><%=  link_to(r.title, recipe_path(r))%></p>
-   
-<%end %>
-<hr>
-<div>
-    <%= link_to("Add recipe", new_recipe_path) %>
+<div class= "row responsive">
+    <%@recipes.each do |r| %>
+        <div class="gallery-item">
+            <%= link_to  recipe_path(r.id) do %>
+                <%= image_tag r.recipe_img.url, class:"img img-rounded img-responsive", alt: 'a recipe'%>
+            <% end %>
+            <div class="title"><%= link_to(r.title, recipe_path(r))%></div>
+        </div>
+    <% end%>
 </div>
-

@@ -1,3 +1,82 @@
 // Place all the styles related to the Recipes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.blue {
+    color: blue;
+}
+
+.img{
+    height: 250px;
+    width: 200px;
+}
+
+// Class
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 10px;
+
+}
+
+// Usage as a mixin
+
+.title{
+  text-align: left;
+  @extend .h4;
+  @extend .center-block;
+}
+.description{
+  padding-left: 60px;
+  @extend .center-block;
+}
+
+.gallery-item {
+    height: 360px;
+    @extend .col-lg-3; 
+    @extend .col-md-4;
+    @extend .col-sm-6;
+    @extend .col-xs-12;
+    
+    padding-top: 20px;
+    padding-bottom: 20px;
+    
+    text-align: center;
+   
+    a {
+        @extend .blue;
+        @extend .img
+    }
+}
+
+
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+  font-family: Arial;
+  
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  font-weight: normal;
+  color: #777;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+li {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
