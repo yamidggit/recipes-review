@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :recipes  do
   get 'category/:category_name', on: :collection, action: 'recipes_by_category', as: 'category' 
-  end
   resources :reviews
+  end
+  
  
  # member is for specific id, collection don't include id
   # recipes is the name of controller

@@ -1,11 +1,16 @@
 require 'rails_helper'
+require 'devise'
 require 'byebug'
 
 
 RSpec.describe RecipesController, type: :controller do
 
     describe "GET index" do
+         #before(:each) do
+           # user = build(:user)
+        #end
         it 'correctly sets up @recipes for the view' do
+            
             r = create(:recipe)
             r2 = create(:recipe)
             get :index
@@ -16,23 +21,38 @@ RSpec.describe RecipesController, type: :controller do
 
    
     describe 'GET #new' do
+       
         before(:each) do
+            user=create(:user)
+            sign_in(user)
+            #category=create(:category) 
             get :new
+            
         end
+     
         it "creates a new recipe" do
+           
             expect(assigns[:recipe]).to be_a_new(Recipe) # assigns is a hash of instance variable
         end
     end
     
+
     describe "RECIPE create" do
-        let(:r) { create(:recipe) } # is using the FactoryGirl
-        let(:recipe_params) { attributes_for(:recipe)} #using the FactoryGirl to make a hash
+        before(:each) do
+            user=create(:user)
+            sign_in(user)
+            @category=create(:category)
+        end
+        let(:r) { create(:recipe)} 
+        
+        let(:recipe_params) { attributes_for(:recipe, category_ids:[@category.id])} #using the FactoryGirl to make a hash
 
         it "creates a new recipe" do
            
             expect{ post(:create, {recipe: recipe_params}) }.to change { Recipe.count }.by 1 # post match with the HTTP POST request
+            
         end                                                                                  #and go to the controller create action
-        
+
         it "creates a recipe with correct title, description and publisher" do
             
             post(:create , {recipe: recipe_params})
@@ -46,7 +66,7 @@ RSpec.describe RecipesController, type: :controller do
             post(:create , {recipe: recipe_params})
             expect(response).to redirect_to recipes_path
         end
-   
+
     end
 
     describe "Edit recipe" do
@@ -63,8 +83,13 @@ RSpec.describe RecipesController, type: :controller do
 
   
     describe "Update Recipe" do
+        before(:each) do
+            user=create(:user)
+            sign_in(user)
+            @category=create(:category)
+        end
         let(:r) { create(:recipe, title:"Updated title") }
-        let(:recipe_params) { attributes_for(:recipe, title: "Updated title")}
+        let(:recipe_params) { attributes_for(:recipe, category_ids:[@category.id], title: "Updated title")}
         
         it "updates a recipe with valid params" do
             post :update, id: r.id, recipe: recipe_params

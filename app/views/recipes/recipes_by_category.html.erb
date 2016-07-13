@@ -1,13 +1,32 @@
-<% if user_signed_in?%>
-    <%@recipes=current_user.recipes%>
-<%end%>
-<div class= "row">
-     <% @category.recipes.each do |r| %>
-        <div class="gallery-item">
-            <%= link_to  recipe_path(r) do %>
-                <%= image_tag r.recipe_img.url, class:"img", alt: 'a recipe'%>
-            <% end %>
-            <p><%= link_to(r.title, recipe_path(r))%></p>
-        </div>
-    <% end%>
-</div>
+
+    <div class= "row ">
+        <% if user_signed_in?%>
+            <% @category.recipes.each do |r| %>
+                <%if r.user_id==current_user.id%>
+                    <div class="gallery-item">
+                        <%= link_to  recipe_path(r) do %>
+                            <%= image_tag r.recipe_img.url, class:"img img-rounded img-responsive", alt: 'a recipe'%>
+                        <% end %>
+                        <p><%= link_to(r.title, recipe_path(r))%></p>
+                    </div>
+                <%end%>    
+            <%end%>
+            
+    
+        <%else%>
+            <% @category.recipes.each do |r| %>
+                <div class="gallery-item">
+                    <%= link_to  recipe_path(r) do %>
+                        <%= image_tag r.recipe_img.url, class:"img img-rounded img-responsive", alt: 'a recipe'%>
+                    <% end %>
+                    <p><%= link_to(r.title, recipe_path(r))%></p>
+                </div>
+            <% end%>
+        <%end%>
+    </div>
+
+
+ 
+
+
+

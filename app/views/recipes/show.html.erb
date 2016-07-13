@@ -15,8 +15,8 @@
                         <p><%=link_to("Delete Recipe", recipe_path(@recipe), method: :delete)%></p>
                     </div>
                 <%end%>
-                </div>
             </div>
+        </div>
            
         <div class="col-md-8 description">
             <h3>Categories:</h3> 
@@ -25,16 +25,29 @@
             <h3><%= @recipe.publisher %></h3>
             <hr>
             <p><%= @recipe.description %></p>
-            <%=link_to("Add comment", new_review_path(@recipe) )%>
-            
-            
-            
         </div>
-        
     </div>
        
 
-      
+    <div class="row center-block">
+        
+        <h3>Reviews</h3>
+        
+        <% @recipe.reviews.each do |review| %>
+            <p>Rating: <%= review.rating %> stars</p>
+            <p><%= review.comment %></p>
+            <% if (user_signed_in?)&& (review.user!=nil) && (review.user.id==current_user.id)%>
+                <p><%=link_to("Edit review", edit_recipe_review_path(@recipe, review) )%></p>
+                <p><%=link_to("Delete review", recipe_review_path(@recipe, review), method: :delete )%></p>
+            <%end%>
+            <hr>    
+        <%end%>
+        
+        <% if (user_signed_in?)%>
+            <p><%=link_to("Add review", new_recipe_review_path(@recipe) )%></p>
+        <%end%>
+        
+    </div>
         
         
   

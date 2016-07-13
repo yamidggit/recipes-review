@@ -1,28 +1,27 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+* Application to keep track of user's recipes*
 
 * Ruby version
+    ruby 2.3.0p0
 
-* System dependencies
+* Rails version
+    ruby 2.3.0p0
 
 * Configuration
-
+    bundle install
+    
 * Database creation
-
+    rake db:create
+    
 * Database initialization
-
+    rake db:migrate
+    
 * How to run the test suite
+    guard
+    spring rspec (much faster)
+    
+*Stop spring
+    spring stop
+    
+*Start the server
+    rails server -b $IP -p $PORT
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.

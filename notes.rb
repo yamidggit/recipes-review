@@ -53,5 +53,4 @@ add this inside Model Recipe
 Rails migration generator: rails generate paperclip Recipe recipe_img    
 rake db:migrate
     
-    
    
