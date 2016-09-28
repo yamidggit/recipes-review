@@ -8,7 +8,7 @@
 
 * Configuration
     gem install rails
-    bundle install
+    bundle install --without production
     
 * Database creation
     rake db:create
