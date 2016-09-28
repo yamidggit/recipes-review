@@ -27,7 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'simple_form'
 gem 'paperclip'
-
+#gem 'yaml_db' import and export data of database
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -49,6 +49,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'sqlite3'
+  gem 'pg'
 end
 
 group :development do
