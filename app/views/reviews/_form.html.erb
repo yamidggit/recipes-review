@@ -1,8 +1,19 @@
-<div class="row container">
-    <%= simple_form_for ([@recipe, @review])do |f| %>
-        <%= f.input :rating, placeholder: 'Stars' %>
-        <%= f.input :comment, placeholder: 'Comment' %>
-        <br>
+<%= simple_form_for ([@recipe, @review])do |f| %>
+    <div class="panel-body">
+        <div class="form-group">
+            <%= f.label :rating%>
+            <div id='star-rating'></div><br>
+            <%= f.input :comment, placeholder: 'Comment' %>
+        </div>
+    </div>
+    <div class="panel-footer">
         <%= f.button :submit, class: "btn btn-primary" %>
-    <% end %>
-</div>
+    </div>
+<% end %>
+
+<script>
+$('#star-rating').raty({
+    path: '/assets',
+    scoreName: 'review[rating]'
+});
+</script>

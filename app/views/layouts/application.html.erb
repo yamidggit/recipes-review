@@ -2,54 +2,70 @@
 <html>
 <head>
   <title>RecipesReview</title>
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  
+  
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-    
-    <header class="navbar navbar-default  navbar-inverse">
-      <div class="container ">
-        <h4><%= link_to "Recipe Review", recipes_path,class: "navbar-brand" %></h4>
-        
-        <nav>
-          
-          <ul class="nav navbar-nav navbar-right "> 
-          
-          <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                  Categories
-                  <span class="caret"></span>
-                </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                      <% Category.all.each do |c| %>
-                       <li> <%= link_to "#{c.name}", category_recipes_path(c.name) %> </li>
-                      <%end%>
-                  </ul>
-              </div>
-          </ul>
-          
-          <ul class="nav navbar-nav navbar-left " >
-            <% if current_user.nil? %>
-                  
-              <li><%= link_to("Log in", new_user_session_path) %></li> 
-              <li><%= link_to("Sign up", new_user_registration_path) %></li>
-            <% else %>
-              
-              <li><%= link_to("Log out", destroy_user_session_path, method: :delete) %></li>
-            <% end %>
-          
-              <li><%= link_to("Add recipe", new_recipe_path) %></li>
-           
-          </ul>
-        </nav>
-      </div>
-    </header>
+  <nav  class="navbar navbar-default navbar-fixed-top navbar-inverse navbar-custom ">
     <div class="container">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      
-      <%= yield %>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+        </button>
+        
+        <ul class="nav navbar-nav navbar-left" >
+          <li  id= "logo"><%= link_to((image_tag "logo.png"), recipes_path, class: "navbar-brand page-scroll") %></li>
+          <li><%= link_to("Recipe Reviews", recipes_path, class: " title navbar-brand page-scroll")%></li>
+        </ul>
+          
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav  navbar-right "> 
+          <li><%= link_to("Add recipe", new_recipe_path, class: "page-scroll") %></li>
+          <% if current_user.nil? %>
+            <li><%= link_to("Log in", new_user_session_path, class: "page-scroll") %></li> 
+            <li><%= link_to("Sign up", new_user_registration_path, class: "page-scroll") %></li>
+          <% else %>
+            <li><%=link_to("Settings", edit_user_registration_path, class: "page-scroll" )%></li>
+            <li><%= link_to("Log out", destroy_user_session_path, method: :delete, class: "page-scroll") %></li>
+          <% end %>
+          <li role="presentation" class="dropdown">
+            <a class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Categories
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <% Category.all.each do |c| %>
+                <li id="category"> <%= link_to "#{c.name}", category_recipes_path(c.name) %> </li>
+              <%end%>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
+    
+  <div class="container">
+    <p class="notice"><%= notice %></p>
+    
+    <p class="alert " role="alert"><%= alert %></p>
+    
+    <%= yield %>
+  </div>
+
+  
+  <nav class=" footer navbar  navbar-fixed-bottom" role="navigation">
+    <div class="container text-center">
+      Copyright &copy; 2016 Yamilet Diaz
+    </div>
+  </nav>          
+
 </body>
+
 </html>

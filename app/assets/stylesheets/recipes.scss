@@ -1,83 +1,109 @@
 // Place all the styles related to the Recipes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.blue {
-    color: blue;
+
+body{
+    background-color: #f2f2f2;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    font-family: Lato,'Helvetica Neue',Helvetica,Arial,sans-serif;
+    min-height: 800px;
+ }
+p{
+    font-size:20px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    font-family:Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-transform:uppercase;
+    font-weight:700
+}
+.image{
+    height: 300px;
+    width: 100%;
+    padding: 0.8em 0.8em;
 }
 
-.img{
-    height: 250px;
-    width: 200px;
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-brand.active,
+.navbar-custom .navbar-brand:active,
+.navbar-custom .navbar-brand:focus,
+.navbar-custom .navbar-brand:hover,
+.navbar-custom .navbar-nav li a,
+.navbar-custom .navbar-toggle{
+  color: #fff;
+}
+.navbar-custom{
+    background: rgba(25, 25, 25, 0.8);
+    font-weight: 700;
+    border:none;
 }
 
-// Class
-.center-block {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 10px;
-
+.navbar-right li a{
+  font-size: 16px;
 }
 
-// Usage as a mixin
-
-.title{
-  text-align: left;
-  @extend .h4;
-  @extend .center-block;
-}
-.description{
-  padding-left: 60px;
-  @extend .center-block;
+#category a{
+  color: #000;
 }
 
+#logo{
+ margin-top: -17px;
+}
+.reviews-section{
+  margin-top: 2.5em;
+}
+
+#show-img img{
+  height: 400px;
+  width: 350px;
+  padding: 0.7em 0.7em;
+}
 .gallery-item {
-    height: 360px;
-   
-    @extend .col-lg-3; 
-    @extend .col-md-4;
-    @extend .col-sm-6;
-    @extend .col-xs-12;
     
-    padding-top: 20px;
-    padding-bottom: 20px;
+    margin-bottom: 3em;
+    margin-left: 0.2em;
+    margin-right:0.2em;
     
-    text-align: center;
-   
-    a {
-        @extend .blue;
-        @extend .img
-    }
 }
 
-
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-  font-family: Arial;
-  
+.footer{
+    padding: 15px 0;
+    width: 100%;
+    background-color:rgba(25, 25, 25, 0.9);
+    color: #fff;
+ }
+ 
+@media (max-width: 767px){
+  .gallery-item{
+    width: 250px;
+    height: 300px;
+  }
+   #show-img, #show-img img{
+    width: 250px;
+    height: 300px;
+   }
+   .gallery-item, #show-img{
+    
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1em;
+   }
+  .title {
+    margin-top: 0.8em;
+  }
+  .navbar-toggle{
+    margin-top: 1em;
+  }
+  #logo{
+    margin-left: 1em;
+  }
+  #category a{
+  color: #fff;
 }
-
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  
-}
-
-h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  font-weight: normal;
-  color: #777;
-}
-
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
-}
-li {
-  font-size: 1.1em;
-  line-height: 1.7em;
 }

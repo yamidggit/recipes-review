@@ -53,4 +53,15 @@ add this inside Model Recipe
 Rails migration generator: rails generate paperclip Recipe recipe_img    
 rake db:migrate
     
-   
+    
+#change password
+
+# $ rails console production
+u=User.where(:email => 'user1@email.com').first
+u.email='yamidg@yahoo.com'
+u.password='(es el mismo)'
+u.password_confirmation='(es el mismo)'
+u.save
+
+jQuery raty instructions:
+https://rubyplus.com/articles/4011-Using-Star-Rating-jQuery-Plugin-Raty-with-Twitter-Bootstrap-4-in-Rails-5-Apps

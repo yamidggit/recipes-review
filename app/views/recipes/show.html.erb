@@ -1,55 +1,65 @@
 
-    <div class="row center-block">
-        <div class="col-md-4">
-            <h3><%= @recipe.title %></h3>
-            <%=image_tag @recipe.recipe_img.url, width: 350, height: 400, class: "img-rounded ", alt: 'a recipe'%>
-            <div class="row center-block">
-                <div class="col-md-3">
-                    <p><%= link_to("Back", recipes_path)%></p>
-                </div>
-                <% if user_signed_in?%>
-                    <div class="col-md-4">
-                       <p><%=link_to("Edit Recipe",edit_recipe_path(@recipe))%></p>
-                    </div>
-                    <div class="col-md-5">
-                        <p><%=link_to("Delete Recipe", recipe_path(@recipe), method: :delete)%></p>
-                    </div>
-                <%end%>
+    <div class="row container">
+        <div class="col-md-4 col-sm-6">
+            
+            <div id="show-img" class="panel panel-default">
+                <%=image_tag @recipe.recipe_img.url,  class:" img-rounded img-thumbnail", alt: 'a recipe'%>
             </div>
+            <div class="panel panel-default reviews-section">
+                <div class="panel-body">
+                    <h2>Reviews</h2>
+                    <% @recipe.reviews.each do |review| %>
+                        <div class="reviews">
+                            <div class="star-rating" data-score= <%= review.rating %> ></div>
+                            <p><%= review.comment %></p>
+                        </div>
+                        <% if (user_signed_in?)&& (review.user!=nil) && (review.user.id==current_user.id)%>
+                            <div>
+                                <%=link_to("Edit Review", edit_recipe_review_path(@recipe, review), class:"btn btn-info" )%>
+                                <%=link_to("Delete Review", recipe_review_path(@recipe, review), method: :delete, class:"btn btn-danger" )%>
+                            </div>
+                        <%end%>
+                           
+                    <%end%>
+                    <hr>
+                    <% if (user_signed_in?)%>
+                        <%=link_to("Add Review", new_recipe_review_path(@recipe),  class:"btn btn-lg btn-default" )%>
+                    <%end%>
+                </div>
+            </div>  
         </div>
            
-        <div class="col-md-8 description">
-            <h3>Categories:</h3> 
-            <p><%= @recipe.categories.map(&:name).join(', ') %></p>
-            <hr>
-            <h3><%= @recipe.publisher %></h3>
-            <hr>
-            <p><%= @recipe.description %></p>
+        <div class="col-md-8 col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2><%= @recipe.title %></h2>
+                </div>
+                <div class="panel-body">
+                    <p>Published by <span class="h3"><%= @recipe.publisher %></span></p>
+                    <h4>Average Rating</h4>
+                    <div class='star-rating' data-score=<%= @avg_rating %>></div>
+                    <em>Based in <%= "#{@reviews.size} reviews" %></em>
+                     <h4>Categories: <span class="h5"><%= @recipe.categories.map(&:name).join(', ') %></span></h4>
+                    <p><%= @recipe.description %></p>
+                </div>
+                <div class=" panel-footer buttons">
+                    <% if user_signed_in?%>
+                        <%=link_to("Edit Recipe",edit_recipe_path(@recipe), class:"btn btn-info")%>
+                        <%=link_to("Delete Recipe", recipe_path(@recipe), method: :delete, class:"btn btn-danger")%>
+                    <%end%>
+                </div>
+            </div>
         </div>
-    </div>
-       
-
-    <div class="row center-block">
-        
-        <h3>Reviews</h3>
-        
-        <% @recipe.reviews.each do |review| %>
-            <p>Rating: <%= review.rating %> stars</p>
-            <p><%= review.comment %></p>
-            <% if (user_signed_in?)&& (review.user!=nil) && (review.user.id==current_user.id)%>
-                <p><%=link_to("Edit review", edit_recipe_review_path(@recipe, review) )%></p>
-                <p><%=link_to("Delete review", recipe_review_path(@recipe, review), method: :delete )%></p>
-            <%end%>
-            <hr>    
-        <%end%>
-        
-        <% if (user_signed_in?)%>
-            <p><%=link_to("Add review", new_recipe_review_path(@recipe) )%></p>
-        <%end%>
-        
-    </div>
-        
-        
+    </div>    
+    <script>
+    $('.star-rating').raty({
+      path: '/assets/',
+      readOnly: true,
+      score: function() {
+            return $(this).attr('data-score');
+    }
+  });
+   </script>    
   
     
    

@@ -4,11 +4,16 @@
 
 <div class= "row responsive">
     <%@recipes.each do |r| %>
-        <div class="gallery-item">
-            <%= link_to  recipe_path(r.id) do %>
-                <%= image_tag r.recipe_img.url, class:"img img-rounded img-responsive", alt: 'a recipe'%>
-            <% end %>
-            <div class="title"><%= link_to(r.title, recipe_path(r))%></div>
+    <div class=" col-lg-3 col-md-4 col-sm-6 col-xs-12">
+        <div class="panel panel-default gallery-item ">
+            
+            
+                <%= link_to  recipe_path(r.id) do %>
+                    <%= image_tag r.recipe_img.url, class:"image img-responsive img-rounded img-thumbnail", alt: 'a recipe'%>
+                <% end %>
+            
+            
         </div>
+    </div>
     <% end%>
 </div>

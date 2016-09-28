@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-    before_action :find_recipe, only: [ :new, :edit,:update,] 
+    before_action :find_recipe
     before_action :find_review, only: [:edit, :update, :destroy ]
     before_action :authenticate_user!, only: [:new, :edit]
     def new
@@ -8,14 +8,10 @@ class ReviewsController < ApplicationController
     end
     
     def create
-        if user_signed_in?
-            @review = current_user.reviews.new(review_params) 
-        else
-             @review = Review.new(review_params) 
-        end
-        @review.recipe_id= params[:recipe_id]
+        @review = current_user.reviews.new(review_params) 
+        @review.recipe_id= @recipe.id
         if (@review.save) 
-           redirect_to recipe_path(params[:recipe_id])
+           redirect_to recipe_path(@recipe)
         else
             render 'new'
         end 
@@ -28,7 +24,7 @@ class ReviewsController < ApplicationController
     def update
         
         if @review.update_attributes(review_params)
-            redirect_to recipe_path(params[:recipe_id])
+            redirect_to recipe_path(@recipe)
         else
             render 'edit'
         end
@@ -36,7 +32,7 @@ class ReviewsController < ApplicationController
     
     def destroy
         @review.destroy
-        redirect_to recipe_path(params[:recipe_id])
+        redirect_to recipe_path(@recipe)
     end
     
     def find_recipe

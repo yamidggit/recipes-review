@@ -1,12 +1,15 @@
-<div class="row container">
-    <%= simple_form_for @recipe, html: { multipart: true } do |f| %>
-        <%= f.input :title, placeholder: 'Enter title' %>
-        <%= f.input :publisher, placeholder: 'Publisher' %>
-        <%= f.input :description, placeholder: 'Description' %>
-        <%= f.association :categories, as: :check_boxes %>
-        <%=f.label :image %>
-        <%= f.file_field :recipe_img %>
-        <br>
+<%= simple_form_for @recipe, html: { multipart: true } do |f| %>
+    <div class="panel-body">
+        <div class="form-group">
+            <%= f.input :title, placeholder: 'Enter title' %>
+            <%= f.input :publisher, placeholder: 'Publisher' %>
+            <%= f.input :description, placeholder: 'Description' %>
+            <%= f.association :categories, as: :check_boxes %>
+            <%=f.label :image %>
+            <%= f.file_field :recipe_img %>
+        </div>
+    </div>
+    <div class="panel-footer">
         <%= f.button :submit, class: "btn btn-primary" %>
-    <% end %>
-</div>
+    </div>
+<% end %>

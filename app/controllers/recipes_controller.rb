@@ -24,7 +24,12 @@ class RecipesController < ApplicationController
     end
     
     def show
-        
+        @reviews = @recipe.reviews.to_a
+        if @reviews.blank?
+            @avg_rating = 0 
+        else
+            @avg_rating= @recipe.reviews.average(:rating).round(2)
+        end
     end
     def destroy
         @recipe.destroy
