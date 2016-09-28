@@ -3,10 +3,10 @@ source 'https://rubygems.org'
 ruby '2.3.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
-# Use sqlite3 as the database for Active Record
+
 gem 'bootstrap-sass'
 
-gem 'sqlite3'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -46,7 +46,7 @@ group :development, :test do
   gem 'spring-commands-rspec'
   gem 'factory_girl_rails'
   gem 'capybara'
-  
+  gem 'sqlite3'
 end
 
 group :development do
@@ -58,4 +58,10 @@ group :development do
 
   gem 'guard-livereload'
   gem 'rack-livereload'
+end
+
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
 end
