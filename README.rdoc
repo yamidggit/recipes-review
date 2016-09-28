@@ -1,4 +1,4 @@
-* Application to keep track of user's recipes*
+* Application to keep track of user's recipes built on Ruby on Rails. Responsive style achieve with Boostrap, CSS3 and medias queries and jQuery
 
 * Ruby version
     ruby 2.3.0p0
@@ -23,6 +23,6 @@
 *Stop spring
     spring stop
     
-*Start the server
+*Start the server in cloud9
     rails server -b $IP -p $PORT
 
