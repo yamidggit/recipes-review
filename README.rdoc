@@ -4,7 +4,7 @@
     ruby 2.3.0p0
 
 * Rails version
-    ruby 2.3.0p0
+    Rails 4.2.6
 
 * Configuration
     gem install rails
