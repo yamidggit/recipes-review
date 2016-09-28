@@ -22,7 +22,6 @@ class ReviewsController < ApplicationController
     end
     
     def update
-        
         if @review.update_attributes(review_params)
             redirect_to recipe_path(@recipe)
         else

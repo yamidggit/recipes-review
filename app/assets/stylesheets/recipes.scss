@@ -65,11 +65,9 @@ h6{
   padding: 0.7em 0.7em;
 }
 .gallery-item {
-    
     margin-bottom: 3em;
     margin-left: 0.2em;
     margin-right:0.2em;
-    
 }
 
 .footer{
@@ -80,30 +78,29 @@ h6{
  }
  
 @media (max-width: 767px){
-  .gallery-item{
-    width: 250px;
-    height: 300px;
-  }
-   #show-img, #show-img img{
-    width: 250px;
-    height: 300px;
-   }
-   .gallery-item, #show-img{
-    
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 1em;
-   }
-  .title {
-    margin-top: 0.8em;
-  }
-  .navbar-toggle{
-    margin-top: 1em;
-  }
-  #logo{
-    margin-left: 1em;
-  }
-  #category a{
-  color: #fff;
-}
+    .gallery-item{
+        width: 250px;
+        height: 300px;
+    }
+    #show-img, #show-img img{
+        width: 250px;
+        height: 300px;
+    }
+    .gallery-item, #show-img{
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1em;
+    }
+    .title {
+        margin-top: 0.8em;
+    }
+    .navbar-toggle{
+        margin-top: 1em;
+    }
+    #logo{
+        margin-left: 1em;
+    }
+    #category a{
+        color: #fff;
+    }
 }

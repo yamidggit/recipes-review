@@ -4,5 +4,5 @@ class Recipe < ActiveRecord::Base
     has_many :reviews
    
     has_attached_file :recipe_img, default_url: "/images/:style/missing.png"
-  validates_attachment_content_type :recipe_img, content_type: /\Aimage\/.*\Z/
+    validates_attachment_content_type :recipe_img, content_type: /\Aimage\/.*\Z/
 end

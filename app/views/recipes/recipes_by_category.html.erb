@@ -1,31 +1,29 @@
 
-    <div class= "row responsive">
-        <% if user_signed_in?%>
-            <% @category.recipes.each do |r| %>
-                <%if r.user_id==current_user.id%>
-                   <div class=" col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                        <div class="panel panel-default gallery-item ">
-                            <%= link_to  recipe_path(r) do %>
-                                <%= image_tag r.recipe_img.url, class:"image img-responsive img-rounded img-thumbnail", alt: 'a recipe'%>
-                            <% end %>
-                        </div>
-                    </div>
-                <%end%>    
-            <%end%>
-            
-    
-        <%else%>
-            <% @category.recipes.each do |r| %>
-                <div class=" col-lg-3 col-md-4 col-sm-6 col-xs-12">
+<div class= "row responsive">
+    <% if user_signed_in?%>
+        <% @category.recipes.each do |r| %>
+            <%if r.user_id==current_user.id%>
+               <div class=" col-lg-3 col-md-4 col-sm-6 col-xs-12">
                     <div class="panel panel-default gallery-item ">
                         <%= link_to  recipe_path(r) do %>
                             <%= image_tag r.recipe_img.url, class:"image img-responsive img-rounded img-thumbnail", alt: 'a recipe'%>
                         <% end %>
                     </div>
                 </div>
-            <% end%>
+            <%end%>    
         <%end%>
-    </div>
+    <%else%>
+        <% @category.recipes.each do |r| %>
+            <div class=" col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                <div class="panel panel-default gallery-item ">
+                    <%= link_to  recipe_path(r) do %>
+                        <%= image_tag r.recipe_img.url, class:"image img-responsive img-rounded img-thumbnail", alt: 'a recipe'%>
+                    <% end %>
+                </div>
+            </div>
+        <% end%>
+    <%end%>
+</div>
 
 
  

@@ -7,12 +7,9 @@ class RecipesController < ApplicationController
     
     def new
         @recipe= current_user.recipes.new
-       # @categories=Category.all.map{|c| [c.name, c.id]}
-        
     end
     
     def create
-        
         @recipe = current_user.recipes.new(recipe_params)
         add_category
         
