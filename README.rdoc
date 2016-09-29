@@ -1,5 +1,6 @@
 * Application to keep track of user's recipes built on Ruby on Rails. Responsive style achieve with Boostrap, CSS3 and medias queries and jQuery
-    https://recipe-review.herokuapp.com/recipes
+
+* Heroku https://recipe-review.herokuapp.com/recipes
 
 * Ruby version
     ruby 2.3.0p0
