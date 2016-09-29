@@ -30,15 +30,21 @@
     <div class="col-md-8 col-sm-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h2><%= @recipe.title %></h2>
+                <h3><%= @recipe.title %></h3>
             </div>
             <div class="panel-body">
                 <p>Published by <span class="h3"><%= @recipe.publisher %></span></p>
+                <h4>Categories: <span class="h5"><%= @recipe.categories.map(&:name).join(', ') %></span></h4>
+                <br>
                 <h4>Average Rating</h4>
                 <div class='star-rating' data-score=<%= @avg_rating %>></div>
                 <em>Based in <%= "#{@reviews.size} reviews" %></em>
-                 <h4>Categories: <span class="h5"><%= @recipe.categories.map(&:name).join(', ') %></span></h4>
-                <p><%= @recipe.description %></p>
+                <br>
+                <br>
+                <h5>Ingredients:</h5>
+                <ul>
+                    <p><%= simple_format(@recipe.description)%></p>
+                <ul>
             </div>
             <div class=" panel-footer buttons">
                 <% if user_signed_in?%>
